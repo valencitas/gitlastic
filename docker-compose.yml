@@ -1,0 +1,29 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.1
+    container_name: es01
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    networks:
+      - elastic
+    healthcheck:
+      test: "curl --silent --fail localhost:9200/_cluster/health || exit 1"
+  gitlastic:
+    build: .
+    image: gitlastic:latest
+    depends_on:
+      es01:
+        condition: service_healthy
+    environment:
+     - ELASTIC_HOST=${ELASTIC_HOST}
+     - GITHUB_ACCESS_KEY=${GITHUB_ACCESS_KEY}
+    networks:
+      - elastic
+
+networks:
+  elastic:
+    driver: bridge
+
