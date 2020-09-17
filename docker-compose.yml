@@ -20,6 +20,7 @@ services:
     environment:
      - ELASTIC_HOST=${ELASTIC_HOST}
      - GITHUB_ACCESS_KEY=${GITHUB_ACCESS_KEY}
+     - ORGANIZATION_NAME=${ORGANIZATION_NAME}
     networks:
       - elastic
 
