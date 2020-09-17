@@ -7,9 +7,11 @@ Requirements:
  - docker
 
 You'll also need environment variables for 
+```
 GITHUB_ACCESS_KEY
 ELASTIC_HOST (defaults to localhost)
 ORGANIZATION_NAME (defaults to elastic)
+```
 
 To run, (from the project root):
 ```
